@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">test</string>
+    <string name="login_main_text">It\'s time to\n expand your \n network.</string>
+    <string name="username_text">Username</string>
+    <string name="password_text">Password</string>
+    <string name="signin_text">Sign In</string>
+    <string name="signup_text">Sign Up</string>
+    <string name="login_socially_tip">How to use Social.ly to grow your career</string>
+    <string name="login_screen">LoginScreen</string>
+</resources>
