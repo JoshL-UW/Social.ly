@@ -6,9 +6,26 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.cs407.test.LoginFragment"
+        android:name="com.cs407.socially.LoginFragment"
         android:label="@string/login_screen"
         tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_appExplanationFragment"
+            app:destination="@id/AppExplanationFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/AppExplanationFragment"
+        android:name="com.cs407.socially.AppExplanationFragment"
+        android:label="@string/app_explanation_page"
+        tools:layout="@layout/app_explanation">
+        <action
+            android:id="@+id/action_appExplanationFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/AppExplanationFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 </navigation>
