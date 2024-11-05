@@ -14,6 +14,11 @@
             app:destination="@id/AppExplanationFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -27,5 +32,32 @@
             app:popUpTo="@id/AppExplanationFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.cs407.socially.MainMenuFragment"
+        android:label="@string/main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_savedConnections"
+            app:destination="@id/savedConnections" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedConnections"
+        android:name="com.cs407.socially.SavedConnections"
+        android:label="fragment_saved_connections"
+        tools:layout="@layout/fragment_saved_connections" >
+        <action
+            android:id="@+id/action_savedConnections_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment"
+            app:popUpTo="@id/savedConnections"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 
 </navigation>

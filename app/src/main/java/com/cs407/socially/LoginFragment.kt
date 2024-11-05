@@ -36,7 +36,9 @@ class LoginFragment : Fragment() {
         val username = usernameEditText.text.toString()
         val password = passwordEditText.text.toString()
 
-        signInButton.setOnClickListener {  }
+        signInButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
+        }
         signUpButton.setOnClickListener {  }
         appExplanation.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_appExplanationFragment)

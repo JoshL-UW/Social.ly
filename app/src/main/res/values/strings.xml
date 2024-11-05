@@ -10,4 +10,12 @@
     <string name="app_explanation">Explanation of how app works and how to use NFC to make connections</string>
     <string name="app_explanation_close">Close</string>
     <string name="app_explanation_page">AppExplanation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="event_code_text">Enter event code</string>
+    <string name="main_menu_text">Prepare for a world of opportunity</string>
+    <string name="submit_event_code_text">Let\'s go!</string>
+    <string name="savedconnections_text">Saved connections</string>
+    <string name="main_menu">MainMenu</string>
+    <string name="close_button_text">Close</string>
 </resources>
