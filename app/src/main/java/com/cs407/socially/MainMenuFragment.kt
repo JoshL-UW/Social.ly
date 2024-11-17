@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainMenuFragment : Fragment() {
@@ -54,6 +55,7 @@ class MainMenuFragment : Fragment() {
                         true
                     }
                     R.id.action_logout -> {
+                        FirebaseAuth.getInstance().signOut()
                         findNavController().navigate(R.id.action_mainMenuFragment_to_loginFragment)
                         true
                     }
