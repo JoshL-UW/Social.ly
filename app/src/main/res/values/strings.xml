@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Socially</string>
+    <string name="connecting">Connecting Page</string>
+    <string name="profile">Profile Page</string>
+    <string name="saved_connections">Saved Connections Page</string>
+    <string name="name">Name</string>
+    <string name="about_me">About me</string>
+    <string name="company">Company</string>
+    <string name="position">Position</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="comments">Comments</string>
+    <string name="about">About</string>
+    <string name="save_and_close">Save and close</string>
+    <string name="exit_without_saving">Exit without saving</string>
+    <string name="waiting_to_connect1">Waiting to\nconnect.</string>
+    <string name="waiting_to_connect2">Waiting to\nconnect..</string>
+    <string name="waiting_to_connect3">Waiting to\nconnect...</string>
+    <string name="timer">5:00</string>
+    <string name="matched">Time to find:</string>
+    <string name="open_chat">Open chat</string>
+</resources>
