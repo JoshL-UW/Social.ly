@@ -9,6 +9,10 @@
     <string name="app_explanation">Explanation of how app works and how to use NFC to make connections</string>
     <string name="app_explanation_close">Close</string>
     <string name="app_explanation_page">AppExplanation</string>
+    <string name="signup_title">Create an Account</string>
+    <string name="create_username_text">Username</string>
+    <string name="create_password_text">Password</string>
+    <string name="create_confirm_password_text">Confirm Password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="event_code_text">Enter event code</string>
@@ -19,6 +23,7 @@
     <string name="close_button_text">Close</string>
     <string name="create_username">Create Username</string>
     <string name="create_password">Create Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="create_account">Create Account</string>
     <string name="app_name">Socially</string>
     <string name="connecting">Connecting Page</string>
