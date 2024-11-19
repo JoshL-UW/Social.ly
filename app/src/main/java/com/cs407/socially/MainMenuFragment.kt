@@ -41,7 +41,6 @@ class MainMenuFragment : Fragment() {
         // Todo event code stuff
 
 
-
         savedConnectionsButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainMenuFragment_to_savedConnectionsActivity2)
         }
