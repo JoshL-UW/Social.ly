@@ -74,4 +74,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/createEventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="11dp"
+        android:text="@string/create_event"
+        app:layout_constraintBottom_toTopOf="@+id/savedConnectionsButton"
+        app:layout_constraintStart_toStartOf="@+id/submitEventCodeButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.cs407.socially
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,6 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -39,6 +39,7 @@ class MainMenuFragment : Fragment() {
         val eventCodeText = view.findViewById<EditText>(R.id.eventcode_editText)
         val savedConnectionsButton = view.findViewById<Button>(R.id.savedConnectionsButton)
         val settingsButton = view.findViewById<ImageButton>(R.id.settingsButton)
+        val createEventButton = view.findViewById<Button>(R.id.createEventButton)
 
         // Todo event code stuff
 
@@ -46,6 +47,10 @@ class MainMenuFragment : Fragment() {
 
         savedConnectionsButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainMenuFragment_to_savedConnectionsActivity2)
+        }
+
+        createEventButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mainMenuFragment_to_createEventFragment)
         }
 
         submitButton.setOnClickListener {
@@ -103,7 +108,7 @@ class MainMenuFragment : Fragment() {
                 // Show a message based on whether the code was found
                 if (codeFound) {
                     Toast.makeText(requireContext(), "Code is valid!", Toast.LENGTH_SHORT).show()
-                    // Todo: Add fragment transition
+                        findNavController().navigate(R.id.action_mainMenuFragment_to_connectingActivity2)
                 } else {
                     Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
                 }

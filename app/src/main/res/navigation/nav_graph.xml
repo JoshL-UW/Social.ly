@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_connectingActivity2"
             app:destination="@id/connectingActivity2" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -95,6 +98,15 @@
         android:id="@+id/matchFoundActivity2"
         android:name="com.cs407.socially.MatchFoundActivity"
         android:label="MatchFoundActivity" />
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="com.cs407.socially.CreateEventFragment"
+        android:label="fragment_create_event"
+        tools:layout="@layout/fragment_create_event" >
+        <action
+            android:id="@+id/action_createEventFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
 
 
 </navigation>
