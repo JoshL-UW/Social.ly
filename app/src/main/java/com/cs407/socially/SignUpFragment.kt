@@ -24,17 +24,22 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val username = view.findViewById<EditText>(R.id.createUserNameText)
-        val password = view.findViewById<EditText>(R.id.createPasswordText)
+        val username = view.findViewById<EditText>(R.id.createUserNameEditText)
+        val password = view.findViewById<EditText>(R.id.createPasswordEditText)
+        val confirm = view.findViewById<EditText>(R.id.createConfirmPasswordEditText)
         val createAccountButton = view.findViewById<Button>(R.id.createAccountButton)
 
         createAccountButton.setOnClickListener {
             val usernameInput = username.text.toString().trim()
             val passwordInput = password.text.toString().trim()
+            val confirmInput = confirm.text.toString().trim()
 
             if (usernameInput.isEmpty() || passwordInput.isEmpty()) {
                 // Todo: show toast to tell user that a field is empty
                 showToast("Please fill out all fields")
+            }
+            else if (passwordInput != confirmInput) {
+                showToast("Passwords do not match")
             }
             else {
                 createUser(usernameInput, passwordInput)
