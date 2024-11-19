@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">test</string>
     <string name="login_main_text">It\'s time to expand your network.</string>
     <string name="username_text">Username</string>
     <string name="password_text">Password</string>

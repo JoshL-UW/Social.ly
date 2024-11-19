@@ -47,19 +47,14 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_mainMenuFragment_to_savedConnections"
-            app:destination="@id/savedConnections" />
-    </fragment>
-    <fragment
-        android:id="@+id/savedConnections"
-        android:name="com.cs407.socially.SavedConnections"
-        android:label="fragment_saved_connections"
-        tools:layout="@layout/fragment_saved_connections" >
+            android:id="@+id/action_mainMenuFragment_to_profileActivity2"
+            app:destination="@id/profileActivity2" />
         <action
-            android:id="@+id/action_savedConnections_to_mainMenuFragment"
-            app:destination="@id/mainMenuFragment"
-            app:popUpTo="@id/savedConnections"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_mainMenuFragment_to_savedConnectionsActivity2"
+            app:destination="@id/savedConnectionsActivity2" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_connectingActivity2"
+            app:destination="@id/connectingActivity2" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -70,6 +65,36 @@
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileActivity2"
+        android:name="com.cs407.socially.ProfileActivity"
+        android:label="activity_saved_connections"
+        tools:layout="@layout/activity_saved_connections" >
+        <action
+            android:id="@+id/action_profileActivity2_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedConnectionsActivity2"
+        android:name="com.cs407.socially.SavedConnectionsActivity"
+        android:label="SavedConnectionsActivity" >
+        <action
+            android:id="@+id/action_savedConnectionsActivity2_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectingActivity2"
+        android:name="com.cs407.socially.ConnectingActivity"
+        android:label="activity_connecting"
+        tools:layout="@layout/activity_connecting" >
+        <action
+            android:id="@+id/action_connectingActivity2_to_matchFoundActivity2"
+            app:destination="@id/matchFoundActivity2" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchFoundActivity2"
+        android:name="com.cs407.socially.MatchFoundActivity"
+        android:label="MatchFoundActivity" />
 
 
 </navigation>

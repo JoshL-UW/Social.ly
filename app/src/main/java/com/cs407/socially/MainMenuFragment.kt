@@ -31,16 +31,16 @@ class MainMenuFragment : Fragment() {
         val savedConnectionsButton = view.findViewById<Button>(R.id.savedConnectionsButton)
         val settingsButton = view.findViewById<ImageButton>(R.id.settingsButton)
 
-        // Todo event code stuff
+        // TODO: event code stuff
 
 
 
         savedConnectionsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mainMenuFragment_to_savedConnections)
+            findNavController().navigate(R.id.action_mainMenuFragment_to_savedConnectionsActivity2)
         }
 
         submitButton.setOnClickListener {
-            // Todo: go to event fragment
+            findNavController().navigate(R.id.action_mainMenuFragment_to_connectingActivity2)
         }
 
         settingsButton.setOnClickListener {
@@ -50,7 +50,7 @@ class MainMenuFragment : Fragment() {
             popupMenu.setOnMenuItemClickListener { item ->
                 when(item.itemId) {
                     R.id.action_profile -> {
-                        // todo go to profile fragment
+                        findNavController().navigate(R.id.action_mainMenuFragment_to_profileActivity2)
 
                         true
                     }
