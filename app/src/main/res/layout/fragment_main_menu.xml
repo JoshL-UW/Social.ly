@@ -33,6 +33,7 @@
         android:hint="@string/event_code_text"
         android:inputType="text"
         android:textSize="24sp"
+        android:maxLength="8"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

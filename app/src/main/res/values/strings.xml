@@ -47,5 +47,6 @@
     <string name="matched">Time to find:</string>
     <string name="open_chat">Open chat</string>
     <string name="create_event">Create Event</string>
+    <string name="create_event_hint">Create Event Code</string>
     <string name="back_button">Back</string>
 </resources>
