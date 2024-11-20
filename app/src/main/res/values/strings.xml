@@ -2,8 +2,8 @@
     <string name="login_main_text">It\'s time to expand your network.</string>
     <string name="username_text">Username</string>
     <string name="password_text">Password</string>
-    <string name="signin_text">Sign In</string>
-    <string name="signup_text">Sign Up</string>
+    <string name="signin_text">Sign in</string>
+    <string name="signup_text">Sign up</string>
     <string name="login_socially_tip">How to use Social.ly to grow your career</string>
     <string name="login_screen">LoginScreen</string>
     <string name="app_explanation">Explanation of how app works and how to use NFC to make connections</string>
@@ -12,21 +12,22 @@
     <string name="signup_title">Create an Account</string>
     <string name="create_username_text">Username</string>
     <string name="create_password_text">Password</string>
-    <string name="create_confirm_password_text">Confirm Password</string>
+    <string name="create_confirm_password_text">Confirm password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="event_code_text">Enter event code</string>
-    <string name="main_menu_text">Prepare for a world of opportunity</string>
+    <string name="main_menu_text">Prepare for a world of opportunity.</string>
     <string name="submit_event_code_text">Let\'s go!</string>
-    <string name="savedconnections_text">Saved connections</string>
+    <string name="savedconnections_text">Saved Connections</string>
+    <string name="my_profile_title">My Profile</string>
     <string name="main_menu">MainMenu</string>
     <string name="close_button_text">Close</string>
-    <string name="create_username">Create Username</string>
-    <string name="create_password">Create Password</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="create_account">Create Account</string>
+    <string name="create_username">Create username</string>
+    <string name="create_password">Create password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_account">Create account</string>
     <string name="app_name">Socially</string>
-    <string name="connecting">Connecting Page</string>
+    <string name="connecting">Connecting page</string>
     <string name="profile">Profile Page</string>
     <string name="saved_connections">Saved Connections Page</string>
     <string name="name">Name</string>
@@ -46,7 +47,9 @@
     <string name="timer">5:00</string>
     <string name="matched">Time to find:</string>
     <string name="open_chat">Open chat</string>
-    <string name="create_event">Create Event</string>
-    <string name="create_event_hint">Create Event Code</string>
+    <string name="create_event">Create event</string>
+    <string name="create_event_hint">Create event code</string>
     <string name="back_button">Back</string>
+    <string name="how_to_use">Chat with other professionals. Tap your devices. Connect and grow your network</string>
+
 </resources>

@@ -29,18 +29,21 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/waiting_to_connect1"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="50dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
 
         <Button
             android:id="@+id/placeHolderButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PLACEHOLDER TO SKIP SCREEN" />
+            android:layout_height="60dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:text="Placeholder Button"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/gray" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
