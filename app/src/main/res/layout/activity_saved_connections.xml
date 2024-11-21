@@ -22,7 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="50dp"
+                android:textSize="50sp"
+                android:textColor="@color/black"
                 android:background="@drawable/diagonal_gradient"
                 android:text="@string/name" />
 
@@ -38,13 +39,13 @@
                 android:id="@+id/connectionNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
+                android:text="@string/comments"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/connectionNameEditText"
@@ -52,7 +53,12 @@
                 android:layout_height="150dp"
                 android:ems="10"
                 android:hint="@string/comments"
-                android:gravity="center"
+                android:gravity="top"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:textStyle="italic"
+                android:textSize="24sp"
                 android:inputType="text"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
@@ -68,7 +74,7 @@
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/connectionAboutEditText"
@@ -76,7 +82,12 @@
                 android:layout_height="150dp"
                 android:ems="10"
                 android:hint="@string/about"
-                android:gravity="center"
+                android:gravity="top"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:textStyle="italic"
+                android:textSize="24sp"
                 android:inputType="text"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
@@ -92,15 +103,19 @@
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/connectionCompanyEditText"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:ems="10"
                 android:hint="@string/company"
-                android:gravity="center"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textStyle="italic"
+                android:textSize="24sp"
                 android:inputType="text"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
@@ -116,15 +131,19 @@
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/connectionPositionEditText"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:ems="10"
                 android:hint="@string/position"
-                android:gravity="center"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textStyle="italic"
+                android:textSize="24sp"
                 android:inputType="text"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
@@ -140,15 +159,19 @@
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/connectionPhoneEditText"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:ems="10"
                 android:hint="@string/phone"
-                android:gravity="center"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textStyle="italic"
+                android:textSize="24sp"
                 android:inputType="phone"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
@@ -164,15 +187,19 @@
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/connectionEmailEditText"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:ems="10"
                 android:hint="@string/email"
-                android:gravity="center"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textStyle="italic"
+                android:textSize="24sp"
                 android:inputType="textEmailAddress"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
@@ -188,15 +215,19 @@
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/connectionLinkedinEditText"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:ems="10"
                 android:hint="@string/linkedin"
-                android:gravity="center"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textStyle="italic"
+                android:textSize="24sp"
                 android:inputType="text"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
@@ -205,11 +236,11 @@
             <Button
                 android:id="@+id/connectionSaveButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:textSize="24sp"
                 android:gravity="center"
                 android:text="@string/save_and_close"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/black" />
@@ -217,11 +248,11 @@
             <Button
                 android:id="@+id/connectionExitButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:textSize="24sp"
                 android:gravity="center"
                 android:text="@string/exit_without_saving"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="32dp"
                 android:backgroundTint="@color/gray" />

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C3A7E7">
+    android:background="@drawable/diagonal_gradient">
 
     <TextView
         android:id="@+id/loginMainText"
@@ -31,8 +31,8 @@
         android:background="@drawable/rectangle_edittext"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="text"
         android:hint="@string/username_text"
@@ -46,7 +46,7 @@
         android:id="@+id/editPassword"
         android:layout_width="0dp"
         android:layout_height="55dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rectangle_edittext"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
@@ -63,12 +63,11 @@
         android:id="@+id/signInButton"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#F6AE2D"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/black"
         android:text="@string/signin_text"
-        android:textColor="#000"
+        android:textColor="@color/white"
         android:textSize="24sp"
-        android:textStyle="italic"
         app:layout_constraintLeft_toLeftOf="@+id/editPassword"
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
@@ -76,11 +75,10 @@
         android:id="@+id/signUpButton"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:backgroundTint="#C3A7E7"
+        android:backgroundTint="@color/gray"
         android:text="@string/signup_text"
-        android:textColor="#000"
+        android:textColor="@color/black"
         android:textSize="24sp"
-        android:textStyle="italic"
         app:layout_constraintRight_toRightOf="@+id/editPassword"
         app:layout_constraintTop_toTopOf="@+id/signInButton" />
 
