@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignUpFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -56,15 +57,48 @@ class SignUpFragment : Fragment() {
 
         auth.createUserWithEmailAndPassword(usernameToEmail, password).addOnCompleteListener { task ->
             if(task.isSuccessful) {
+                val userId = auth.currentUser?.uid
+                if (userId != null) {
+                    createDefaultProfile(username, userId)
+                }
+
                 showToast("Account created successfully")
 
-                findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+
             }
             else {
                 val errorMessage = task.exception?.message ?: "Signup failed"
                 showToast(errorMessage)
             }
         }
+    }
+
+    private fun createDefaultProfile(username: String, userId: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        val defaultProfile = mapOf(
+            "name" to username,
+            "bio" to "User Biography",
+            "company" to "User Company",
+            "email" to "User email",
+            "linkedIn" to "User linkedIn",
+            "phoneNumber" to "User Phone Number",
+            "position" to "User Position",
+            "profilePicture" to ""
+        )
+
+        db.collection("Users").document(userId)
+            .set(defaultProfile).addOnSuccessListener {
+                showToast("Account created successfully, please log in")
+                findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+
+            }
+            .addOnFailureListener { e ->
+                showToast("Account creation failed: ${e.message}")
+            }
+
+
+
     }
     private fun showToast(message: String) {
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()

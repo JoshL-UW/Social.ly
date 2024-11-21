@@ -64,6 +64,7 @@ class LoginFragment : Fragment() {
 
         auth.signInWithEmailAndPassword(usernameToEmail, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                val userId = auth.currentUser?.uid
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 // Go to main menu
                 findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
