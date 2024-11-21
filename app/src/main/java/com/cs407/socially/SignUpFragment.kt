@@ -97,9 +97,14 @@ class SignUpFragment : Fragment() {
                 showToast("Account creation failed: ${e.message}")
             }
 
+        db.collection("Connections").document(userId)
+            .set(mapOf("connections" to emptyList<String>()))
+
+        }
 
 
-    }
+
+
     private fun showToast(message: String) {
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }

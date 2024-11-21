@@ -84,6 +84,9 @@
         <action
             android:id="@+id/action_savedConnectionsActivity2_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
+        <action
+            android:id="@+id/action_savedConnectionsActivity2_to_singleSavedConnection"
+            app:destination="@id/singleSavedConnection" />
     </fragment>
     <fragment
         android:id="@+id/connectingActivity2"
@@ -106,6 +109,14 @@
         <action
             android:id="@+id/action_createEventFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleSavedConnection"
+        android:name="com.cs407.socially.SingleSavedConnection"
+        android:label="SingleSavedConnection" >
+        <action
+            android:id="@+id/action_singleSavedConnection_to_savedConnectionsActivity2"
+            app:destination="@id/savedConnectionsActivity2" />
     </fragment>
 
 

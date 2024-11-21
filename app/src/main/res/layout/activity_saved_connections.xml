@@ -76,22 +76,22 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/connectionAboutEditText"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:ems="10"
-                android:hint="@string/about"
-                android:gravity="top"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:textStyle="italic"
-                android:textSize="24sp"
-                android:inputType="text"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/rectangle_edittext" />
+                android:background="@drawable/rectangle_edittext"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="@string/about"
+                android:inputType="text"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:textSize="24sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/connectionCompanyTextView"
@@ -105,21 +105,21 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/connectionCompanyEditText"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:ems="10"
-                android:hint="@string/company"
-                android:gravity="center_vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textStyle="italic"
-                android:textSize="24sp"
-                android:inputType="text"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/rectangle_edittext" />
+                android:background="@drawable/rectangle_edittext"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/company"
+                android:inputType="text"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="24sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/connectionPositionTextView"
@@ -161,21 +161,21 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/connectionPhoneEditText"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:ems="10"
-                android:hint="@string/phone"
-                android:gravity="center_vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textStyle="italic"
-                android:textSize="24sp"
-                android:inputType="phone"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/rectangle_edittext" />
+                android:background="@drawable/rectangle_edittext"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/phone"
+                android:inputType="phone"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="24sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/connectionEmailTextView"
@@ -189,21 +189,21 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/connectionEmailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:ems="10"
-                android:hint="@string/email"
-                android:gravity="center_vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textStyle="italic"
-                android:textSize="24sp"
-                android:inputType="textEmailAddress"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/rectangle_edittext" />
+                android:background="@drawable/rectangle_edittext"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="24sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/connectionLinkedinTextView"
@@ -217,21 +217,21 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/connectionLinkedinEditText"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:ems="10"
-                android:hint="@string/linkedin"
-                android:gravity="center_vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textStyle="italic"
-                android:textSize="24sp"
-                android:inputType="text"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/rectangle_edittext" />
+                android:background="@drawable/rectangle_edittext"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/linkedin"
+                android:inputType="text"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="24sp"
+                android:textStyle="italic" />
 
             <Button
                 android:id="@+id/connectionSaveButton"
