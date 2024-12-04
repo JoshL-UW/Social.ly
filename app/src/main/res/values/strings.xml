@@ -9,7 +9,7 @@
     <string name="app_explanation">Explanation of how app works and how to use NFC to make connections</string>
     <string name="app_explanation_close">Close</string>
     <string name="app_explanation_page">AppExplanation</string>
-    <string name="signup_title">Create an Account</string>
+    <string name="signup_title">Create an account</string>
     <string name="create_username_text">Username</string>
     <string name="create_password_text">Password</string>
     <string name="create_confirm_password_text">Confirm password</string>
@@ -51,5 +51,6 @@
     <string name="create_event_hint">Create event code</string>
     <string name="back_button">Back</string>
     <string name="how_to_use">Chat with other professionals. Tap your devices. Connect and grow your network</string>
+    <string name="event_create_screen">New connections await.</string>
 
 </resources>
