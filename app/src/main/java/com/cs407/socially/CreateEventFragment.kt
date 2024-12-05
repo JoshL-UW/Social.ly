@@ -61,7 +61,6 @@ class CreateEventFragment : Fragment() {
                     val displayText = "Copy this: $eventCode"
                     newCode.text = displayText
                     backButton.text = getString(R.string.confirm_code)
-                    Toast.makeText(requireContext(), "New Event Created", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     Log.e("Firestore", "Error adding document", e)
