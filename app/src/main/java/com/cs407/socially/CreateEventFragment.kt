@@ -10,19 +10,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class CreateEventFragment : Fragment() {
-    private lateinit var newEventCode: EditText
-    private lateinit var submitNewEventButton: Button
+    private lateinit var generateNewCodeButton: Button
     private lateinit var backButton: Button
+    private lateinit var newCode: TextView
     private lateinit var firestoreDB: FirebaseFirestore
 
-    data class EventCode(
-        val code: String = ""
+    data class EventData(
+        val date: String
     )
 
     override fun onCreateView(
@@ -31,6 +35,8 @@ class CreateEventFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_create_event, container, false)
         firestoreDB = FirebaseFirestore.getInstance()
+        newCode = view.findViewById<TextView>(R.id.newCode)
+        newCode.visibility = View.INVISIBLE
         return view
     }
 
@@ -38,49 +44,64 @@ class CreateEventFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        submitNewEventButton = view.findViewById<Button>(R.id.submitNewEventButton)
+        generateNewCodeButton = view.findViewById<Button>(R.id.submitNewEventButton)
         backButton = view.findViewById<Button>(R.id.returnToMainMenuButton)
-        newEventCode = view.findViewById(R.id.createEventCode)
 
-        submitNewEventButton.setOnClickListener {
+        generateNewCodeButton.setOnClickListener {
+            newCode.visibility = View.VISIBLE
+            val eventCode = generateUniqueEventCode()
+            val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+            val eventData = EventData(date = currentDate)
 
-            val eventCodeInput = newEventCode.text.toString().trim()
             // TODO: submit to firestore as a new event code
-            if (eventCodeInput.isEmpty()) {
-                Toast.makeText(requireContext(), "Please enter a code", Toast.LENGTH_SHORT).show()
-            } else if (eventCodeInput.length != 8) {
-                Toast.makeText(requireContext(), "Please enter an 8 digit code", Toast.LENGTH_SHORT).show()
-            } else {
-                val eventCode = EventCode(eventCodeInput)
-                firestoreDB.collection("EventCodes").whereEqualTo("code", eventCodeInput).get()
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            if (!task.result.isEmpty) {
-                                Toast.makeText(requireContext(), "Code already exists!", Toast.LENGTH_SHORT).show()
-                            } else {
-                                firestoreDB.collection("EventCodes").add(eventCode)
-                                    .addOnSuccessListener { documentReference ->
-                                        Toast.makeText(requireContext(), "New Event Created", Toast.LENGTH_SHORT).show()
-                                        Handler(Looper.getMainLooper()).postDelayed({
-                                            findNavController().navigate(R.id.action_createEventFragment_to_mainMenuFragment)
-                                        }, 2000)
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.e("Firestore", "Error adding document", e)
-                                        Toast.makeText(requireContext(), "Failed to add code", Toast.LENGTH_SHORT).show()
-                                    }
-                            }
-                        } else {
-                            Log.e("Firestore", "Error checking for duplicates: ", task.exception)
-                            Toast.makeText(requireContext(), "Error checking code", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-            }
-
+            firestoreDB.collection("EventCodes").document(eventCode)
+                .set(eventData)
+                .addOnSuccessListener {
+                    generateNewCodeButton.isEnabled = false
+                    val displayText = "Copy this: $eventCode"
+                    newCode.text = displayText
+                    backButton.text = getString(R.string.confirm_code)
+                    Toast.makeText(requireContext(), "New Event Created", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Log.e("Firestore", "Error adding document", e)
+                    Toast.makeText(requireContext(), "Failed to add code", Toast.LENGTH_SHORT).show()
+                }
         }
-
         backButton.setOnClickListener {
             findNavController().navigate(R.id.action_createEventFragment_to_mainMenuFragment)
         }
     }
+
+    //https://stackoverflow.com/questions/46943860/idiomatic-way-to-generate-a-random-alphanumeric-string-in-kotlin
+    fun getRandomString(length: Int) : String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
+    }
+
+    fun generateUniqueEventCode(): String {
+        var eventCode = ""
+        var codeExists = true
+
+        while (codeExists) {
+            eventCode = getRandomString(10)
+            codeExists = checkIfCodeExists(eventCode)
+        }
+
+        return eventCode
+    }
+
+    fun checkIfCodeExists(code: String): Boolean {
+        var exists = false
+        val task = firestoreDB.collection("EventCodes").document(code).get()
+        task.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                exists = task.result.exists()
+            }
+        }
+        return exists
+    }
+
 }
