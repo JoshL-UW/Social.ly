@@ -54,8 +54,8 @@ class MainMenuFragment : Fragment() {
             val eventCode = eventCodeText.text.toString().trim()
             if (eventCode.isEmpty()) {
                 Toast.makeText(requireContext(), "Please enter an event code", Toast.LENGTH_SHORT).show()
-            } else if (eventCode.length != 8) {
-                Toast.makeText(requireContext(), "Event codes are 8 numbers long", Toast.LENGTH_SHORT).show()
+            } else if (eventCode.length != 10) {
+                Toast.makeText(requireContext(), "Event codes are 10 characters long", Toast.LENGTH_SHORT).show()
             } else {
                 checkCode(eventCode)
             }
@@ -85,31 +85,21 @@ class MainMenuFragment : Fragment() {
     }
 
     private fun checkCode(code:String) {
-        firestoreDB.collection("EventCodes").get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                var codeFound = false
+        firestoreDB.collection("EventCodes").document(code).get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val document = task.result
 
-                // Loop through documents in the collection
-                for (document in task.result!!) {
-                    val storedCode = document.getString("code")
-
-                    if (code == storedCode) {
-                        codeFound = true
-                        break
-                    }
-                }
-
-                // Show a message based on whether the code was found
-                if (codeFound) {
-                    Toast.makeText(requireContext(), "Code is valid!", Toast.LENGTH_SHORT).show()
+                    if (document.exists()) {
+                        Toast.makeText(requireContext(), "Code is valid!", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_mainMenuFragment_to_connectingActivity2)
+                    } else {
+                        Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
+                    Log.e("Firestore", "Error checking code: ", task.exception)
+                    Toast.makeText(requireContext(), "Error checking code", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Log.e("Firestore", "Error getting documents: ", task.exception)
-                Toast.makeText(requireContext(), "Error checking code", Toast.LENGTH_SHORT).show()
             }
-        }
     }
 }

@@ -26,7 +26,7 @@ class CreateEventFragment : Fragment() {
     private lateinit var firestoreDB: FirebaseFirestore
 
     data class EventData(
-        val date: String
+        val createdOn: String
     )
 
     override fun onCreateView(
@@ -51,7 +51,7 @@ class CreateEventFragment : Fragment() {
             newCode.visibility = View.VISIBLE
             val eventCode = generateUniqueEventCode()
             val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-            val eventData = EventData(date = currentDate)
+            val eventData = EventData(createdOn = currentDate)
 
             // TODO: submit to firestore as a new event code
             firestoreDB.collection("EventCodes").document(eventCode)
