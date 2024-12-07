@@ -1,13 +1,17 @@
 package com.cs407.socially
 
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -29,6 +33,7 @@ class SingleSavedConnection : Fragment() {
     private lateinit var phoneNumber: TextView
     private lateinit var email: TextView
     private lateinit var linkedIn: TextView
+    private lateinit var profilePicture: ImageView
     private val db = FirebaseFirestore.getInstance()
 
 
@@ -47,6 +52,7 @@ class SingleSavedConnection : Fragment() {
         phoneNumber = view.findViewById(R.id.connectionPhoneEditText)
         email = view.findViewById(R.id.connectionEmailEditText)
         linkedIn = view.findViewById(R.id.connectionLinkedinEditText)
+        profilePicture = view.findViewById(R.id.connectionImageView)
 
         return view
     }
@@ -79,11 +85,26 @@ class SingleSavedConnection : Fragment() {
                     phoneNumber.setText(document.getString("phoneNumber"))
                     email.setText(document.getString("email"))
                     linkedIn.setText(document.getString("linkedIn"))
-                    // TODO: profile picture
+
+                    val base64Image = document.getString("profilePicture")
+
+                    if (!base64Image.isNullOrEmpty()) {
+                        try {
+                            val bitmap = decodeBase64ToImage(base64Image)
+                            profilePicture.setImageBitmap(bitmap)
+                        }
+                        catch (e: IllegalArgumentException) {
+                            Log.e("SingleSavedConnection", "Invalid Base64 image format: ${e.message}")
+                            Toast.makeText(requireContext(), "Failed to load profile picture", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
                 else { Toast.makeText(requireContext(), "Profile not found.", Toast.LENGTH_SHORT).show() }
             }
 
     }
-
+    private fun decodeBase64ToImage(base64String: String): Bitmap {
+        val byteArray = Base64.decode(base64String, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
 }

@@ -54,5 +54,6 @@
     <string name="confirm_code">CONFIRM</string>
     <string name="how_to_use">Chat with other professionals. Tap your devices. Connect and grow your network</string>
     <string name="event_create_screen">New connections await.</string>
+    <string name="edit_profile_picture">Edit profile picture</string>
 
 </resources>
