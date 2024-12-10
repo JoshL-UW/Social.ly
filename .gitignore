@@ -14,3 +14,10 @@
 .cxx
 local.properties
 /.idea/runConfigurations.xml
+/functions/node_modules/
+/functions/.firebase/
+/functions/.runtimeconfig.json
+/functions/.eslintrc.js
+/functions/package-lock.json
+/functions/node_modules
+
