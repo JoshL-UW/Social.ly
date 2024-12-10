@@ -60,14 +60,31 @@ class SavedConnectionsActivity : Fragment() {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     val connections = document.get("connections") as? List<String> ?: emptyList()
-                    Log.d("SavedConnections", "Fetched connections: $connections")
-                    if (connections.isNotEmpty()) {
-                        Toast.makeText(requireContext(), "Connections: $connections", Toast.LENGTH_SHORT).show()
+                    //Log.d("SavedConnections", "Fetched connections: $connections")
+
+                    if (connections.isEmpty()) {
+                        Toast.makeText(requireContext(), "No connections found", Toast.LENGTH_SHORT).show()
+                        return@addOnSuccessListener
                     }
-                    val adapter = ConnectionsAdapter(connections) { connectionId ->
-                        navToProfile(connectionId)
+                    val connectionData = mutableListOf<Pair<String, String>>()
+                    for (connection in connections) {
+                        db.collection("Users").document(connection)
+                            .get()
+                            .addOnSuccessListener { connectionDocument ->
+                                val name = connectionDocument.getString("name") ?: "Unknown name"
+                                connectionData.add(Pair(connection, name))
+
+                                if (connectionData.size === connections.size) {
+                                    val adapter = ConnectionsAdapter(connectionData) { connectionId ->
+                                        navToProfile(connectionId)
+                                    }
+                                    recyclerView.adapter = adapter
+                                }
+                            }
                     }
-                    recyclerView.adapter = adapter
+
+
+
 
                 }
                 else {

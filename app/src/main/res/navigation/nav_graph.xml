@@ -58,6 +58,8 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
+        <argument android:name="eventCode"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"

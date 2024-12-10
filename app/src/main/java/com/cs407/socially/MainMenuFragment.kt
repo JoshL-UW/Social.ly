@@ -13,6 +13,7 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -91,8 +92,24 @@ class MainMenuFragment : Fragment() {
                     val document = task.result
 
                     if (document.exists()) {
-                        Toast.makeText(requireContext(), "Code is valid!", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_mainMenuFragment_to_connectingActivity2)
+                        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+                        if (userId != null) {
+
+                            firestoreDB.collection("EventCodes").document(code)
+                                .update(
+                                    "participants",
+                                    FieldValue.arrayUnion(userId)
+                                ) // adds user id in [user] in firebase
+
+                            Toast.makeText(requireContext(), "Code is valid!", Toast.LENGTH_SHORT)
+                                .show()
+
+                            val bundle = Bundle().apply {
+                                putString("eventCode", code)
+                            }
+                            findNavController().navigate(R.id.action_mainMenuFragment_to_connectingActivity2, bundle)
+                        }
                     } else {
                         Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
                     }

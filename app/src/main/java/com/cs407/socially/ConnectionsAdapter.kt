@@ -8,14 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class ConnectionsAdapter (
-    private val connections: List<String>,
+    private val connections: List<Pair<String,String>>,
     private val onConnectionClick: (String) -> Unit ) : RecyclerView.Adapter<ConnectionsAdapter.ConnectionViewHolder>() {
 
         inner class ConnectionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val connectionButton: Button = itemView.findViewById(R.id.connectionButton)
 
-            fun bind(connectionId: String) {
-                connectionButton.text = connectionId
+            fun bind(connection: Pair<String, String>) {
+                val (connectionId, name) = connection
+                connectionButton.text = name
                 connectionButton.setOnClickListener {
                     onConnectionClick(connectionId)
                 }
