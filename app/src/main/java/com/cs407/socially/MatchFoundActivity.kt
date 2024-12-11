@@ -27,6 +27,8 @@ import com.google.firebase.firestore.ListenerRegistration
 import kotlin.concurrent.timer
 import android.content.Intent
 import android.nfc.NdefMessage
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 
 class MatchFoundActivity : Fragment() {
     private lateinit var profileImageView: ImageView
@@ -66,6 +68,25 @@ class MatchFoundActivity : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // save profile button clicked
+        val checkCircleImageView = view.findViewById<Button>(R.id.checkCircleImageView)
+        checkCircleImageView.setOnClickListener {
+
+            //code to save to db
+            if(currentUserId != null) {
+                val userIdDoc = firestoreDB.collection("Connections").document(currentUserId)
+                userIdDoc.update("connections", FieldValue.arrayUnion(pairedUserIdCopy))
+                    .addOnSuccessListener {
+                        Log.d("Firestore", "Connection successfully added!")
+                        Toast.makeText(requireContext(), "Connection successfully added!", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("Firestore", "Error adding connection", e)
+                        Toast.makeText(requireContext(), "Error adding connection.", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
 
         val eventCode = arguments?.getString("eventCode")
         if (eventCode == null) {
@@ -182,9 +203,11 @@ class MatchFoundActivity : Fragment() {
             userIdDoc.update("connections", FieldValue.arrayUnion(pairedUserIdCopy))
                 .addOnSuccessListener {
                     Log.d("Firestore", "Connection successfully added!")
+                    Toast.makeText(requireContext(), "Connection successfully added!", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     Log.w("Firestore", "Error adding connection", e)
+                    Toast.makeText(requireContext(), "Error adding connection.", Toast.LENGTH_SHORT).show()
                 }
         }
 
