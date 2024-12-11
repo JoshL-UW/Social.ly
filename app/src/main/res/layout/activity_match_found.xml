@@ -75,8 +75,12 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
+            <Button
                 android:id="@+id/checkCircleImageView"
+                android:backgroundTint="@color/gray"
+                android:textColor="@color/black"
+                android:text="@string/plus_button"
+                android:textSize="24sp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginBottom="32dp"
@@ -86,6 +90,8 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/check_circle"
+                android:contentDescription="Save connection"
+                android:clickable="true"
                 app:tint="@color/gray" />
 
 

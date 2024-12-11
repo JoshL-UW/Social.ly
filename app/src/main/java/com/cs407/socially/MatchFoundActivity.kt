@@ -1,7 +1,9 @@
 package com.cs407.socially
 
+import android.app.PendingIntent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.nfc.NfcAdapter
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.WorkDuration
@@ -19,9 +21,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import kotlin.concurrent.timer
+import android.content.Intent
+import android.nfc.NdefMessage
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 
 class MatchFoundActivity : Fragment() {
     private lateinit var profileImageView: ImageView
@@ -31,6 +38,8 @@ class MatchFoundActivity : Fragment() {
     private val firestoreDB = FirebaseFirestore.getInstance()
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
     private var timer: CountDownTimer? = null
+    private var pairedUserIdCopy = ""
+    private var nfcAdapter: NfcAdapter? = null // Declare NFC adapter
 
 
     override fun onCreateView(
@@ -42,12 +51,42 @@ class MatchFoundActivity : Fragment() {
         profileImageView = view.findViewById(R.id.profileImageView)
         nameToFindTextView = view.findViewById(R.id.nameToFindTextView)
         timerTextView = view.findViewById(R.id.timerTextView)
+
+        ///////////////////////////////
+        // Initialize NFC Adapter
+        nfcAdapter = NfcAdapter.getDefaultAdapter(requireContext())
+        if (nfcAdapter == null) {
+            Toast.makeText(requireContext(), "NFC is not supported on this device.", Toast.LENGTH_LONG).show()
+        } else if (!nfcAdapter!!.isEnabled) {
+            Toast.makeText(requireContext(), "NFC is disabled. Please enable it to continue.", Toast.LENGTH_LONG).show()
+        }
+        /////////////////////////////
+
         return view
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // save profile button clicked
+        val checkCircleImageView = view.findViewById<Button>(R.id.checkCircleImageView)
+        checkCircleImageView.setOnClickListener {
+
+            //code to save to db
+            if(currentUserId != null) {
+                val userIdDoc = firestoreDB.collection("Connections").document(currentUserId)
+                userIdDoc.update("connections", FieldValue.arrayUnion(pairedUserIdCopy))
+                    .addOnSuccessListener {
+                        Log.d("Firestore", "Connection successfully added!")
+                        Toast.makeText(requireContext(), "Connection successfully added!", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("Firestore", "Error adding connection", e)
+                        Toast.makeText(requireContext(), "Error adding connection.", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
 
         val eventCode = arguments?.getString("eventCode")
         if (eventCode == null) {
@@ -109,6 +148,9 @@ class MatchFoundActivity : Fragment() {
         }
         else { null }
 
+        if (pairedUserId != null) {
+            pairedUserIdCopy = pairedUserId
+        }
 
         if (pairedUserId != null) {
             firestoreDB.collection("Users").document(pairedUserId)
@@ -151,6 +193,26 @@ class MatchFoundActivity : Fragment() {
         timer?.start()
 
     }
+
+    ///////////////////////////////////
+     fun handleNfcIntent(intent: Intent) {
+
+        //code to save to db
+        if(currentUserId != null) {
+            val userIdDoc = firestoreDB.collection("Connections").document(currentUserId)
+            userIdDoc.update("connections", FieldValue.arrayUnion(pairedUserIdCopy))
+                .addOnSuccessListener {
+                    Log.d("Firestore", "Connection successfully added!")
+                    Toast.makeText(requireContext(), "Connection successfully added!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Log.w("Firestore", "Error adding connection", e)
+                    Toast.makeText(requireContext(), "Error adding connection.", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+    }
+    ///////////////////////////////////
 
     override fun onDestroyView() {
         super.onDestroyView()
