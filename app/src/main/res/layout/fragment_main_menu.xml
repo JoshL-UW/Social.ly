@@ -57,14 +57,14 @@
 
     <Button
         android:id="@+id/savedConnectionsButton"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:backgroundTint="@color/gray"
         android:text="@string/savedconnections_text"
         android:textColor="@color/black"
         android:textSize="24sp"
-        android:textStyle="italic"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -74,6 +74,7 @@
         android:layout_width="52dp"
         android:layout_height="51dp"
         android:src="@drawable/baseline_person_24"
+        android:contentDescription="@string/settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
