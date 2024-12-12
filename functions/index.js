@@ -14,7 +14,7 @@ admin.initializeApp();
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
-exports.pairParticipants = onSchedule("every 5 minutes", async (context) => {
+exports.pairParticipants = onSchedule("every 1 minutes", async (context) => {
   const db = admin.firestore();
   // TODO: EVENT ID how to transfer here
 
@@ -50,12 +50,13 @@ exports.pairParticipants = onSchedule("every 5 minutes", async (context) => {
 
     const eventRef = db.collection("EventCodes").doc(eventId);
 
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     await eventRef.update({
       pairs: formattedPairs,
       participants: result.newOrder.filter((person) => person !== null),
       lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
       nextUpdateTime: admin.firestore.Timestamp
-          .fromDate(new Date(Date.now() + 5 * 60 * 1000)),
+          .fromDate(new Date(Date.now() + 60 * 1000)),
     });
   }
   return null;

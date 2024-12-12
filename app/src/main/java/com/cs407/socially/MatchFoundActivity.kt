@@ -35,6 +35,7 @@ class MatchFoundActivity : Fragment() {
     private lateinit var nameToFindTextView: TextView
     private lateinit var timerTextView: TextView
     private lateinit var eventListener: ListenerRegistration
+
     private val firestoreDB = FirebaseFirestore.getInstance()
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
     private var timer: CountDownTimer? = null
