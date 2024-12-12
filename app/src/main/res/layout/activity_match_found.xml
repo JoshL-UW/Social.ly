@@ -38,11 +38,11 @@
             android:id="@+id/connectingTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:textSize="50sp"
+            android:text="@string/matched"
             android:textColor="@color/black"
-            android:text="@string/matched" />
+            android:textSize="50sp" />
 
         <TextView
             android:id="@+id/nameToFindTextView"
@@ -65,7 +65,7 @@
                 android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/black"
                 android:gravity="center"
                 android:text="@string/open_chat"
