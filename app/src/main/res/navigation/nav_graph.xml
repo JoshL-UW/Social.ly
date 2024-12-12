@@ -109,6 +109,9 @@
         <action
             android:id="@+id/action_matchFoundActivity2_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
+        <action
+            android:id="@+id/action_matchFoundActivity2_to_ChatFragment"
+            app:destination="@id/ChatFragment" />
     </fragment>
     <fragment
         android:id="@+id/createEventFragment"
@@ -125,6 +128,14 @@
         android:label="SingleSavedConnection" >
         <action
             android:id="@+id/action_singleSavedConnection_to_savedConnectionsActivity2"
+            app:destination="@id/savedConnectionsActivity2" />
+    </fragment>
+    <fragment
+        android:id="@+id/ChatFragment"
+        android:name="com.cs407.socially.ChatFragment"
+        android:label="ChatFragment" >
+        <action
+            android:id="@+id/action_ChatFragment_to_matchFoundActivity2"
             app:destination="@id/savedConnectionsActivity2" />
     </fragment>
 

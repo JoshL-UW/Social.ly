@@ -36,6 +36,7 @@ class MatchFoundActivity : Fragment() {
     private lateinit var timerTextView: TextView
     private lateinit var eventListener: ListenerRegistration
     private lateinit var leaveEventButton: Button
+    private lateinit var chatButton: Button
 
     private val firestoreDB = FirebaseFirestore.getInstance()
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
@@ -54,6 +55,7 @@ class MatchFoundActivity : Fragment() {
         nameToFindTextView = view.findViewById(R.id.nameToFindTextView)
         timerTextView = view.findViewById(R.id.timerTextView)
         leaveEventButton = view.findViewById(R.id.leaveEventButton)
+        chatButton = view.findViewById(R.id.openChatButton)
 
         ///////////////////////////////
         // Initialize NFC Adapter
@@ -71,6 +73,10 @@ class MatchFoundActivity : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        chatButton.setOnClickListener {
+            findNavController().navigate(R.id.action_matchFoundActivity2_to_ChatFragment)
+        }
 
         leaveEventButton.setOnClickListener {
             val eventCode = arguments?.getString("eventCode")

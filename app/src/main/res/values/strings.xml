@@ -61,5 +61,8 @@
     <string name="settings">Settings</string>
     <string name="leave_event">Leave event</string>
     <string name="welcomeToEvent">Welcome to event</string>
+    <string name="send_message">^</string>
+    <string name="close_chat">Close chat</string>
+    <string name="chat_hint">Type message</string>
 
 </resources>
