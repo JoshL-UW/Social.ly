@@ -56,7 +56,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="@+id/openChatButton"
+            app:layout_constraintTop_toBottomOf="@+id/openChatButton">
 
             <Button
                 android:id="@+id/openChatButton"
@@ -65,34 +67,50 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="32dp"
                 android:backgroundTint="@color/black"
-                android:textSize="24sp"
                 android:gravity="center"
                 android:text="@string/open_chat"
                 android:textColor="@color/white"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.144"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/checkCircleImageView"
-                android:backgroundTint="@color/gray"
-                android:textColor="@color/black"
-                android:text="@string/plus_button"
-                android:textSize="24sp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="32dp"
+                android:backgroundTint="@color/gray"
+                android:clickable="true"
+                android:contentDescription="Save connection"
+                android:text="@string/plus_button"
+                android:textColor="@color/black"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/check_circle"
-                android:contentDescription="Save connection"
-                android:clickable="true"
                 app:tint="@color/gray" />
+
+            <Button
+                android:id="@+id/leaveEventButton"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="0dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="#000000"
+                android:text="@string/leave_event"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/openChatButton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

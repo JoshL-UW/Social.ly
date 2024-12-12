@@ -98,11 +98,18 @@
         <action
             android:id="@+id/action_connectingActivity2_to_matchFoundActivity2"
             app:destination="@id/matchFoundActivity2" />
+        <action
+            android:id="@+id/action_connectingActivity2_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/matchFoundActivity2"
         android:name="com.cs407.socially.MatchFoundActivity"
-        android:label="MatchFoundActivity" />
+        android:label="MatchFoundActivity" >
+        <action
+            android:id="@+id/action_matchFoundActivity2_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createEventFragment"
         android:name="com.cs407.socially.CreateEventFragment"

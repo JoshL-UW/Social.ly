@@ -1,12 +1,16 @@
 package com.cs407.socially
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -15,6 +19,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import kotlin.concurrent.timerTask
@@ -22,6 +29,8 @@ import kotlin.concurrent.timerTask
 class ConnectingActivity : Fragment() {
     private lateinit var placeHolderButton: Button
     private lateinit var connectingTextView: TextView
+    private lateinit var welcomeText: TextView
+    private lateinit var profilePicture: ImageView
     private var timer: CountDownTimer? = null
     private lateinit var eventListener: ListenerRegistration
     private val firestoreDB = FirebaseFirestore.getInstance()
@@ -38,6 +47,8 @@ class ConnectingActivity : Fragment() {
         val view = inflater.inflate(R.layout.activity_connecting, container, false)
         connectingTextView = view.findViewById(R.id.connectingTextView)
         placeHolderButton = view.findViewById<Button>(R.id.placeHolderButton)
+        welcomeText = view.findViewById(R.id.welcomeToEventText)
+        profilePicture = view.findViewById(R.id.profileImageView)
 
 
         return view
@@ -52,7 +63,7 @@ class ConnectingActivity : Fragment() {
 
 
         if (eventCode != null) {
-
+            displayUserDetails()
             listenForUpdates(eventCode)
             firestoreDB.collection("EventCodes").document(eventCode)
                 .get()
@@ -78,6 +89,9 @@ class ConnectingActivity : Fragment() {
             Log.e("ConnectingActivity", "No event code provided")
             Toast.makeText(requireContext(), "Error: No event code provided.", Toast.LENGTH_SHORT)
                 .show()
+        }
+        placeHolderButton.setOnClickListener {
+            removeUserFromEvent(eventCode)
         }
     }
 
@@ -151,6 +165,53 @@ class ConnectingActivity : Fragment() {
             )
         }
     }
+    private fun removeUserFromEvent(eventCode: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        val event = firestoreDB.collection("EventCodes").document(eventCode)
+
+        event.update("participants", FieldValue.arrayRemove(userId))
+            .addOnSuccessListener {
+                if (findNavController().currentDestination?.id == R.id.connectingActivity2) {
+                    findNavController().navigate(R.id.action_connectingActivity2_to_mainMenuFragment)
+                }
+                if (findNavController().currentDestination?.id == R.id.matchFoundActivity2) {
+                    findNavController().navigate(R.id.action_matchFoundActivity2_to_mainMenuFragment)
+                }
+                //findNavController().navigate(R.id.action_connectingActivity2_to_mainMenuFragment)
+            }
+    }
+
+    private fun displayUserDetails(){
+        val currentUser = FirebaseAuth.getInstance().currentUser?.uid
+
+        if (currentUser == null) {
+            Log.e("Connecting Activity", "No user signed in")
+            return
+        }
+
+        firestoreDB.collection("Users").document(currentUser)
+            .get()
+            .addOnSuccessListener { user ->
+                val name = user.getString("name") ?: "User"
+                val profilePictureBase64 = user.getString("profilePicture")
+
+                welcomeText.text = "Welcome to event $name!"
+
+
+                if (!profilePictureBase64.isNullOrEmpty()) {
+                    val bitmap = decodeBase64ToImage(profilePictureBase64)
+                    profilePicture.setImageBitmap(bitmap)
+                }
+
+
+            }
+
+    }
+    private fun decodeBase64ToImage(base64String: String): Bitmap {
+        val byteArray = Base64.decode(base64String, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -160,5 +221,6 @@ class ConnectingActivity : Fragment() {
         }
         timer?.cancel()
     }
+
 
 }

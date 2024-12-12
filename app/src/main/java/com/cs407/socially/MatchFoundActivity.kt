@@ -35,6 +35,7 @@ class MatchFoundActivity : Fragment() {
     private lateinit var nameToFindTextView: TextView
     private lateinit var timerTextView: TextView
     private lateinit var eventListener: ListenerRegistration
+    private lateinit var leaveEventButton: Button
 
     private val firestoreDB = FirebaseFirestore.getInstance()
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
@@ -52,6 +53,7 @@ class MatchFoundActivity : Fragment() {
         profileImageView = view.findViewById(R.id.profileImageView)
         nameToFindTextView = view.findViewById(R.id.nameToFindTextView)
         timerTextView = view.findViewById(R.id.timerTextView)
+        leaveEventButton = view.findViewById(R.id.leaveEventButton)
 
         ///////////////////////////////
         // Initialize NFC Adapter
@@ -69,6 +71,13 @@ class MatchFoundActivity : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        leaveEventButton.setOnClickListener {
+            val eventCode = arguments?.getString("eventCode")
+            if (eventCode != null) {
+                removeUserFromEvent(eventCode)
+            }
+        }
 
         // save profile button clicked
         val checkCircleImageView = view.findViewById<Button>(R.id.checkCircleImageView)
@@ -192,6 +201,16 @@ class MatchFoundActivity : Fragment() {
         }
 
         timer?.start()
+
+    }
+
+    private fun removeUserFromEvent(eventCode: String) {
+
+        val event = firestoreDB.collection("EventCodes").document(eventCode)
+        event.update("participants", FieldValue.arrayRemove(currentUserId))
+            .addOnSuccessListener {
+                findNavController().navigate(R.id.action_matchFoundActivity2_to_mainMenuFragment)
+            }
 
     }
 
